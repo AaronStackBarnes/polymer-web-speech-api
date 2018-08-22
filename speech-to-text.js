@@ -24,8 +24,8 @@ class SpeechToText extends PolymerElement {
         #stop-recording-button {
           visibility: var(--stop-recording-visibility, hidden);
         }
-        #iterm-results {
-          visibility: var(--iterm-results-visibility, hidden);
+        #interim-results {
+          visibility: var(--interim-results-visibility, hidden);
         }
         #final-results {
           visibility: var(--final-results-visibility, hidden);
@@ -34,14 +34,14 @@ class SpeechToText extends PolymerElement {
 
       <button id='start-recording-button' on-click="startRecording">Start</button>
       <button id='stop-recording-button'on-click="stopRecording">Stop</button>
-      <p id='iterm-results'>[[iterm]]</p>
+      <p id='interim-results'>[[interim]]</p>
       <p id='final-results'>[[final]]</p>
     `;
   }
 
   static get properties() {
     return {
-      iterm: {
+      interim: {
         type: String,
         notify: true,
         readOnly: false,
@@ -65,7 +65,7 @@ class SpeechToText extends PolymerElement {
 
   constructor() {
     super();
-    this.iterm = ''
+    this.interim = ''
     this.final = ''
   }
 
@@ -82,6 +82,7 @@ class SpeechToText extends PolymerElement {
   stopRecording() {
     let { recognizer } = this
     recognizer.stop()
+    this.recording = false
   }
 
   startRecording() {
@@ -98,14 +99,16 @@ class SpeechToText extends PolymerElement {
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           this.final = `${this.final} ${event.results[i][0].transcript}`
+          this.recording = false
         } else {
-          this.iterm = event.results[i][0].transcript
+          this.interim = event.results[i][0].transcript
         }
       }
     }
 
     recognizer.onerror = function(event) {
       console.log(event);
+      this.recording = false
     }
 
     recognizer.onnomatch = function(event) {
