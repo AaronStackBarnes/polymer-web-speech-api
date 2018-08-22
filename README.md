@@ -6,6 +6,12 @@ polymer wrapper for the web speech api
 ```
 <custom-element-demo>
   <template>
+    <style>
+        --start-recording-visibility: visible;
+        --stop-recording-visibility: visible;
+        --interim-results-visibility: visible;
+        --final-results-visibility: visible;
+    </style>
     <script type="module" src="./speech-to-text.js"></script>
     <next-code-block></next-code-block>
   </template>
