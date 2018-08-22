@@ -6,7 +6,7 @@ polymer wrapper for the web speech api
 ```
 <custom-element-demo>
   <template>
-    <script type="module" src="../speech-to-text.js"></script>
+    <script type="module" src="./speech-to-text.js"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
