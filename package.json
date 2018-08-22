@@ -1,0 +1,13 @@
+{
+  "name": "speech-to-text",
+  "description": "polymer wrapper for the web speech api ",
+  "main": "speech-to-text.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0"
+  }
+}
